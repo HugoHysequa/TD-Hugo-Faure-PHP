@@ -1,0 +1,14 @@
+.page, .next{
+    padding:5px;
+    background-color: rgb(23, 236, 3);
+}
+.current{
+    background-color: green;
+}
+.pagination span, .pagination a{
+    color:white;
+}
+.previous{
+    background-color: rgb(47, 255, 168);
+    padding: 5px;
+}

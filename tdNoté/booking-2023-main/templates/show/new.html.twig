@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Ajout d'un spectacle</h2>
+        {% if erreur is not null %}
+            <h2 style="color:red">Un spectacle est déjà prévu à cette date ou vos horaires sont incorrects</h2>
+        {% endif %}
+    {{ include('show/_form.html.twig') }}
+{% endblock %}

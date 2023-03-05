@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Réservez vos spectacles!
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/td.css') }}"/>
+
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/select2.full.min.js') }}"></script>
+        <script type="text/javascript">
+        $(document).ready(function() { $('select').select2(); });
+        </script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg bg-black navbar-dark mb-3">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('home') }}">
+                    <img src="{{ asset('img/spot.png') }}" />
+                    DAWIN-Arena
+                </a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+                        {% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_show_index') }}">Spectacles</a>
+						</li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ path('app_seat_index') }}">Places</a>
+						</li>
+                        {% endif %}
+
+                        {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+						</li>
+                        {% else %}
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						</li>
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						</li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ path('configuration') }}">Configuration</a>
+						</li>
+                        {% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+        <div class="container">
+		    {% block body %}{% endblock %}
+        </div>
+	</body>
+</html>
